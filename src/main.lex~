@@ -8,6 +8,7 @@
 
 %%
 
+MAIN	main
 INT 	int
 CHAR 	char
 STRING	string
@@ -15,6 +16,8 @@ IF 	if
 WHILE 	while
 FOR 	for
 RETURN 	return
+PRINTF	printf
+SCANF	scanf
 LPAREN 	"("
 RPAREN 	")"
 LBRACE 	"{"
@@ -34,6 +37,7 @@ LEQ 	"<="
 BQ 	">"
 LQ 	"<"
 EV 	"="
+COMMA	","
 SEMICOLON ";"
 ID	[a-zA-Z_]*([a-zA-Z_0-9]+)
 NUMBER	[0-9]+
@@ -46,34 +50,38 @@ commentend	"*/"
 
 %%
 
-{INT} {printf("INT  %s\n",yytext);}
-{CHAR} {printf("CHAR	%s\n",yytext);}
-{STRING} {printf("STRING	%s\n",yytext);}
-{IF} {printf("IF %s\n",yytext);}
-{WHILE} {printf("WHILE  %s\n",yytext);}
-{FOR}	{printf("FOR	%s\n",yytext);}
-{RETURN} {printf("RETURN  %s\n",yytext);}
-{LPAREN} {printf("LPAREN  %s\n",yytext);}
-{RPAREN} {printf("RPAREN  %s\n",yytext);}
-{LBRACE} {printf("LBRACE  %s\n",yytext);}
-{RBRACE} {printf("RBRACE  %s\n",yytext);}
-{AND} {printf("AND  %s\n",yytext);}
-{OR} {printf("OR  %s\n",yytext);}
-{NOT} {printf("NOT  %s\n",yytext);}
-{SUM} {printf("SUM  %s\n",yytext);}
-{SUB} {printf("SUB  %s\n",yytext);}
-{MUL} {printf("MUL  %s\n",yytext);}
-{DIV} {printf("DIV  %s\n",yytext);}
-{MOD} {printf("MOD  %s\n",yytext);}
-{EQ} {printf("EQ  %s\n",yytext);}
-{UEQ} {printf("UEQ  %s\n",yytext);}
-{BEQ} {printf("BEQ  %s\n",yytext);}
-{LEQ} {printf("LEQ  %s\n",yytext);}
-{BQ} {printf("BQ  %s\n",yytext);}
-{LQ} {printf("LQ  %s\n",yytext);}
-{EV} {printf("EV  %s\n",yytext);}
-{SEMICOLON} {printf("SEMICOLON  %s\n",yytext);}
-{NUMBER} {printf("NUMBER  %s  %s\n",yytext,yytext);}
+{MAIN} {return MAIN;}
+{INT} {printf("INT  %s\n",yytext);return INT;}
+{CHAR} {printf("CHAR	%s\n",yytext);return CHAR;}
+{STRING} {printf("STRING	%s\n",yytext);return STRING;}
+{IF} {return IF;}
+{WHILE} {return WHILE;}
+{FOR}	{return FOR;}
+{RETURN} {return RETURN;}
+{PRINTF} {return PRINTF;}
+{SCANF}	{return SCANF;}
+{LPAREN} {return LPAREN;}
+{RPAREN} {return RPAREN;}
+{LBRACE} {return LBRACE;}
+{RBRACE} {return RBRACE;}
+{AND} {printf("AND  %s\n",yytext);return AND;}
+{OR} {printf("OR  %s\n",yytext);return OR;}
+{NOT} {printf("NOT  %s\n",yytext);return NOT;}
+{SUM} {printf("SUM  %s\n",yytext);return SUM;}
+{SUB} {printf("SUB  %s\n",yytext);return SUB;}
+{MUL} {printf("MUL  %s\n",yytext);return MUL;}
+{DIV} {printf("DIV  %s\n",yytext);return DIV;}
+{MOD} {printf("MOD  %s\n",yytext);return MOD;}
+{EQ} {return EQ;}
+{UEQ} {return UEQ;}
+{BEQ} {return BEQ;}
+{LEQ} {return LEQ;}
+{BQ} {return BQ;}
+{LQ} {return LQ;}
+{EV} {return EV;}
+{COMMA}	{return COMMA;}
+{SEMICOLON} {return SEMICOLON;}
+{NUMBER} {return NUMBER;}
 {ID} {
 	 std::string A=yytext;
 	 if(ID_list.find(A)!=ID_list.end())

@@ -6,37 +6,14 @@
 
 enum NodeType
 {
-	STMT
+    NODE_CONST, 
+    NODE_VAR,
+    NODE_EXPR,
+    NODE_TYPE,
+    NODE_STMT,
+    NODE_PROG,
 };
 
-enum StmtType // 一个语句块
-{
-	MAIN_STMT,
-	DECL_STMT,
-	ASS_STMT,
-	COMP_STMT,
-	WHILE_STMT,
-	IF_STMT,
-	FOR_STMT,
-	RETURN_STMT,
-	PRINTF_STMT,
-	SCANF_STMT,
-}
-;
-
-enum exprType
-{
-	TYPE_expr,
-	OP_expr,
-	ID_expr,
-	CONST_expr,
-};
-enum TYPETYPE
-{
-	INT,
-	CHAR,
-	STRING,
-};
 enum OperatorType
 {
 	SUM,
@@ -56,7 +33,19 @@ enum OperatorType
 	ASSIGN,//= != >= <= > < =
 };
 
-
+enum StmtType 
+{
+	MAIN_STMT,
+	DECL_STMT,
+	ASS_STMT,
+	WHILE_STMT,
+	IF_STMT,
+	FOR_STMT,
+	RETURN_STMT,
+	PRINTF_STMT,
+	SCANF_STMT,
+}
+;
 
 struct TreeNode {
 public:
